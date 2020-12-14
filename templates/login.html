@@ -36,14 +36,14 @@
     <form style="margin-left: 40px" action="{% url '登录' %}" align="center" method="POST" autocomplete="off">
     {{ dic }}<br/>
     {% csrf_token %}
-        <label>账号：<input name="user_name" type="text" placeholder="请输入账号"></label><br/><br/>
-        <label>密码：<input name="user_password" type="password" placeholder="请输入密码"></label><br/><br/>
+        <label>账号：<input name="user_name" type="text" placeholder="请输入账号" value="admin"></label><br/><br/>
+        <label>密码：<input name="user_password" type="password" placeholder="请输入密码" value="123456"></label><br/><br/>
         <input class="btn_left btn_submit  btn btn-outline-primary" type="submit" value="登录">
         <input class="btn_submit btn btn-outline-primary" type="submit" value="注册" onclick="register.value = '1'">
         <input type="hidden" name="register" id='register' value="0">
     </form>
-    <p align = "center" style="margin-right: 130px"><a href="#" onclick="document.getElementById('find_password').style.visibility='visible'">忘记密码?</a></p>
-
+    <input style="display: none" id="forget_password" value="0">
+    <p align = "center" style="margin-right: 130px"><a href="#" onclick="change_visibility()">忘记密码?</a></p>
     <!-- 找回密码  -->
 
      <form id="find_password" style="visibility: hidden" method="POST"  align = center autocomplete="off">

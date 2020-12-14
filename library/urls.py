@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from library import views
-
+from library import viewss
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index,name='主页'),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('signup/', views.signup,name='注册'),
     path('ajax_find_password/',views.ajax_find_password,name='找回密码'),
     path('ajax_judge/', views.ajax_judge),
-    path('ajax_layout/',views.ajax_layout)
+    path('ajax_layout/',views.ajax_layout),
+    path('home/',viewss.home,name='家')
 ]

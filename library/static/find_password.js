@@ -24,3 +24,13 @@ function find_pwd() {
             }
         })
 }
+
+function change_visibility() {
+    if (forget_password.value=='0'){
+        forget_password.value="1"
+        document.getElementById('find_password').style.visibility='visible'
+    } else{
+         forget_password.value="0"
+        document.getElementById('find_password').style.visibility='hidden'
+    }
+}

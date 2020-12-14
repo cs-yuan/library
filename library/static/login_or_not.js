@@ -50,6 +50,7 @@ function logout() {
             type:"post",
             success:function (data) {
                 display_tag(data.judge);
+                window.location.href="../";
             }
         })
 }
