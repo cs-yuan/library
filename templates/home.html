@@ -20,11 +20,40 @@
             color: #2d7ab2;
         }
         .divv{
-            background: red;
             width: 500px;
             height: 80px;
             margin: 0 auto;
             padding: 20px;
+        }
+        .divv ul {
+            width: 373px;
+            padding: 5px;
+            list-style: none;
+            border: 1px solid rgba(0,0,0,0.3);
+            border-top: none;
+            background: white;
+            visibility: hidden;
+        }
+        .divv li{
+            line-height: 30px;
+        }
+        .divv li:hover {
+            background-color: rgba(200,200,200,0.6);
+        }
+        .divv button{
+            display: block;
+        }
+
+
+
+        .down_div{
+            background: rgba(255,255,255,0.4);
+            width:380px;
+            height:100px;
+
+        }
+        .divv input{
+            outline: none;
         }
     </style>
 <ul id="navv1" class="navv ">
@@ -58,14 +87,19 @@
     <li><a href="#" onclick="show_books(this.innerHTML)">Z</a></li>
     </ul>
 <div class="divv" >
-
-
+<form class="d-flex" style="margin-bottom: 0px">
+          <input autocomplete="off" onclick="remove_list();search_box.style.visibility='visible'" onkeyup="ajax_search(this.value);search_box.style.visibility='visible'" id="search_input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button onclick="ajax_show_one_table(search_input.value);remove_list()" id="search_btn" class="btn btn-outline-success" type="button">Search</button>
+</form>
+    <ul id="search_box">
+        <li>&nbsp</li>
+    </ul>
+{#<div class="down_div"></div>#}
 </div>
 
 {% endblock %}
 
 {% block content %}
-<a href="#" onclick="create_list()">这里是家</a>
 <div class="row mb-2" id="rowb2">
 {#    <div class="col-md-6">#}
 {#      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">#}

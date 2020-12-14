@@ -1,3 +1,17 @@
+home.style.color = "black"
+home.style.fontSize = "20px";
+home.style.fontWeight = "bolder";
+document.getElementsByTagName("body")[0].addEventListener('click',function () {
+    remove_search_list()
+    search_box.style.visibility="hidden"
+});
+function remove_list() {
+    var el = document.getElementById('rowb2');
+                var childs = el.childNodes;
+                for(var i = childs .length - 1; i >= 0; i--) {
+                  el.removeChild(childs[i]);
+                }
+}
 function create_list(data){
         div1 = document.createElement("div");
         div1.className = "col-md-6";
@@ -19,7 +33,7 @@ function create_list(data){
         p1.className = "card-text mb-auto";
         p1.innerText = "This is a wider card with supporting text below as a natural lead-in to additional content.";
         a1 = document.createElement("a");
-        a1.href=data[6];
+        a1.href=data[5];
         console.log(a1.href)
         a1.target = "_blank";
         a1.className = "stretched-link";
@@ -31,7 +45,7 @@ function create_list(data){
         div3_1.appendChild(a1);
         div3_2 = document.createElement("img");
         // div3_2.className = "";
-        div3_2.src= "../static/img_books/"+data[5];
+        div3_2.src= "../static/img_books/"+data[6];
         div3_2.style.width ="200px";
         div3_2.style.height = "250px";
 
@@ -69,28 +83,83 @@ function show_books(data){
             data:senddata,
             type:"post",
             success:function (data) {
-                var el = document.getElementById('rowb2');
-                var childs = el.childNodes;
-                for(var i = childs .length - 1; i >= 0; i--) {
-                  el.removeChild(childs[i]);
-}
+                remove_list();
                 datalist = data['data'];
-                console.log(datalist)
+                console.log(datalist);
                 for(i =0;i<datalist.length;i++){
-                    item = datalist[i]
+                    item = datalist[i];
                     num = Math.floor(Math.random()*20);
                     book_img = "@"+num+"@.jpg";
-                    book_id = item[0]
-                    book_name = item[1].substring(0,20)
-                    book_auther = item[2]
-                    book_publish = item[3]
-                    book_year = item[4]
-                    book_href = item[5]
-                    data = [book_id,book_name,book_auther,book_publish,book_year,book_img,book_href]
-                    console.log(data)
+                    book_id = item[0];
+                    book_name = item[1].substring(0,20);
+                    book_auther = item[2];
+                    book_publish = item[3];
+                    book_year = item[4];
+                    book_href = item[5];
+                    data = [book_id,book_name,book_auther,book_publish,book_year,book_href,book_img]
+                    console.log(data);
                     create_list(data)
                 }
-
+            }
+        })
+}
+function remove_search_list() {
+    var el = document.getElementById('search_box');
+                var childs = el.childNodes;
+                for(var i = childs .length - 1; i >= 1; i--) {
+                  el.removeChild(childs[i]);
+    }
+}
+function ajax_search(data) {
+    if(data=="")return;
+    var jsondata = {"data":data};
+        var senddata = JSON.stringify(jsondata);
+        $.ajaxSetup({
+            beforeSend:function (xhr,settings) {
+                if(!csrfSafeMethod(settings.type)&&!this.crossDomain){
+                    xhr.setRequestHeader("X-CSRFToken",csrftoken);
+                }
+            }
+        });
+        $.ajax({
+            url:"../ajax_table_search/",
+            data:senddata,
+            type:"post",
+            success:function (data) {
+                remove_search_list()
+                datalist = data['data'];
+                for(i=0;i<datalist.length&&i<15;i++){
+                    lii = document.createElement("li");
+                    lii.innerHTML=datalist[i];
+                    lii.addEventListener('click',function () {
+                        search_input.value = this.innerHTML;
+                    });
+                    document.getElementById("search_box").appendChild(lii)
+                }
+            }
+        })
+}
+function ajax_show_one_table(data) {
+    if(data=="")return;
+    var jsondata = {"data":data};
+        var senddata = JSON.stringify(jsondata);
+        $.ajaxSetup({
+            beforeSend:function (xhr,settings) {
+                if(!csrfSafeMethod(settings.type)&&!this.crossDomain){
+                    xhr.setRequestHeader("X-CSRFToken",csrftoken);
+                }
+            }
+        });
+        $.ajax({
+            url:"../ajax_show_one_table/",
+            data:senddata,
+            type:"post",
+            success:function (data) {
+                item = data['data'][0]
+                num = Math.floor(Math.random()*20);
+                book_img = "@"+num+"@.jpg";
+                item.push(book_img);
+                create_list(item)
             }
         })
 }

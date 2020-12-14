@@ -27,5 +27,7 @@ urlpatterns = [
     path('ajax_judge/', views.ajax_judge),
     path('ajax_layout/',views.ajax_layout),
     path('home/',viewss.home,name='家'),
-    path('ajax_show_data/',viewss.ajax_show_data)
+    path('ajax_show_data/',viewss.ajax_show_data),
+    path('ajax_table_search/',viewss.ajax_table_search),
+    path('ajax_show_one_table/',viewss.ajax_show_one_table)
 ]
