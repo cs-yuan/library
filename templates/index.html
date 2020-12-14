@@ -1,4 +1,56 @@
+{% extends 'theme.html' %}
+{% csrf_token %}
+{% block content %}
 
-{% extends 'theme.html' %}{% csrf_token %}
+    <script>
+    {#document.getElementsByTagName("body")[0].style.background = "url(../static/111.jpg)"#}
+    </script>
+    <style type="text/css">
+        .yjk{
+            margin: 0 auto;
+            width: 400px;
+            height: 500px;
+            background: rgba(255,255,255,0.5);
+            font-size: 24px;
+        }
+        .yjk span{
+            color: red;
+            font-size: 30px;
+        }
+     video{
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+            z-index: -111;
+            /*加滤镜*/
+            /*filter: blur(15px); //背景模糊设置 */
+            /*-webkit-filter: grayscale(100%);*/
+            /*filter:grayscale(100%); //背景灰度设置*/
+        }
+
+    </style>
+     <video muted src="../static/test.mp4" autoplay loop></video>
+    <div class="yjk" id="yjg">图书管理系统使用方法：</div>
+    <script>
+        speech = [
+            "1、广大读者在首次使用该系统时，需先实名注册个人账户并登陆后，方可开始使用本系统，登陆账户为手机号；",
+            "2、目前，本系统共收藏图书1900余本，并根据读者需求不断进行补充更新；",
+            "3、本系统具有图书检索、借阅记录查询和归还日期提醒等功能；",
+            "4、如在使用过程中有任何问题，请联系QQ<span>602417383</span>。"
+        ];
+        yjgid = 0
+        timer = setInterval(function () {
+            yjg.innerHTML+="<br/>"+speech[yjgid]
+            yjgid++;
+            if (yjgid==4){
+                clearInterval(timer)
+            }
+        },300)
+    </script>
+{% endblock %}
 <h1 align="center">这里是主页</h1>
 <input type="hidden">

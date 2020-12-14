@@ -86,7 +86,7 @@ def login(request):
         conn.close()
         if (user_name,user_password,) in datalist:
             setjudge(1)
-            return redirect('主页')
+            return redirect('家')
         else:
             dic = '''
                 账号或密码错误

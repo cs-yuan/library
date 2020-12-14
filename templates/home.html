@@ -4,6 +4,7 @@
 {% block head %}
     <style type="text/css">
         .navv{
+            z-index: 1;
             width: 150px;
             position: fixed;
         }
@@ -18,8 +19,15 @@
         .navv li a:hover{
             color: #2d7ab2;
         }
+        .divv{
+            background: red;
+            width: 500px;
+            height: 80px;
+            margin: 0 auto;
+            padding: 20px;
+        }
     </style>
-    <ul id="navv1" class="navv ">
+<ul id="navv1" class="navv ">
     <li id="close_navv" style="display: block"><a href="#" onclick="close_nav()">关闭导航栏</a></li>
     <li id="open_navv" style="display: none"><a href="#" onclick="open_nav()">开启导航栏</a></li>
     <li><a href="#" onclick="show_books(this.innerHTML)">A</a></li>
@@ -49,6 +57,11 @@
     <li><a href="#" onclick="show_books(this.innerHTML)">Y</a></li>
     <li><a href="#" onclick="show_books(this.innerHTML)">Z</a></li>
     </ul>
+<div class="divv" >
+
+
+</div>
+
 {% endblock %}
 
 {% block content %}
