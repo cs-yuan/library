@@ -3,18 +3,51 @@
 
 {% block head %}
     <style type="text/css">
-        .nav{
+        .navv{
+            width: 150px;
             position: fixed;
         }
-        .nav li{
-
+        .navv li{
+            list-style-type: none;
+        }
+        .navv li a{
+            text-decoration: none;
+            color: rgba(219, 103, 68, 0.68);
+            font-size: 15px;
+        }
+        .navv li a:hover{
+            color: #2d7ab2;
         }
     </style>
-    <ul class="nav">
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
+    <ul id="navv1" class="navv ">
+    <li id="close_navv" style="display: block"><a href="#" onclick="close_nav()">关闭导航栏</a></li>
+    <li id="open_navv" style="display: none"><a href="#" onclick="open_nav()">开启导航栏</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">A</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">B</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">C</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">D</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">E</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">F</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">G</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">H</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">I</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">J</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">K</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">L</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">M</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">N</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">O</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">P</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">Q</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">R</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">S</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">T</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">U</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">V</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">W</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">X</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">Y</a></li>
+    <li><a href="#" onclick="show_books(this.innerHTML)">Z</a></li>
     </ul>
 {% endblock %}
 
@@ -40,5 +73,5 @@
 
 {% endblock %}
 {% block hello %}
-    <script src="{% static 'create_table.js' %}"></script>
+    <script src="{% static 'home.js' %}"></script>
 {% endblock %}

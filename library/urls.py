@@ -26,5 +26,6 @@ urlpatterns = [
     path('ajax_find_password/',views.ajax_find_password,name='找回密码'),
     path('ajax_judge/', views.ajax_judge),
     path('ajax_layout/',views.ajax_layout),
-    path('home/',viewss.home,name='家')
+    path('home/',viewss.home,name='家'),
+    path('ajax_show_data/',viewss.ajax_show_data)
 ]
