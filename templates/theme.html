@@ -1,0 +1,63 @@
+{% csrf_token %}
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Book Manage</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/pricing/">
+    <!-- Favicons -->
+    <meta name="theme-color" content="#7952b3">
+    <style type="text/css">
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      header a{
+          text-decoration: none;
+          color: rgba(219, 103, 68, 0.68);
+      }
+      #left_nav a:hover{
+          color: rgba(219, 103, 68, 0.68);
+      }
+    </style>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+  </head>
+  <body style="background: rgb(248 248 248)">
+
+<header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <img src="{% static 'logo.png' %}" height="38px">
+  <a style="font-family: 楷体;font-size: 32px" href="{% url '主页' %}" class="h5 my-0 me-md-auto fw-normal" >图书管理系统</a>
+  <nav class="my-2 my-md-0 me-md-3"  id="left_nav" >
+    <a class="p-2 text-dark" href="#" onclick="this.style.color=red;">个人中心</a>
+    <a class="p-2 text-dark" href="#">Enterprise</a>
+    <a class="p-2 text-dark" href="#">个人中心</a>
+    <a class="btn btn-outline-primary" href="#" onclick="logout()">退出登录</a>
+  </nav>
+  <a class="btn btn-outline-primary" href="{% url '登录' %}" id="right_nav">Login</a>
+</header>
+{% block content %}
+{% endblock %}
+
+{% block hello %}
+{% endblock %}
+
+<script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript">
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+</script>
+<script src="{% static 'login_or_not.js' %}"></script>
+</body></html>

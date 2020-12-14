@@ -1,0 +1,44 @@
+
+{% extends 'theme.html' %}{% csrf_token %}
+{% block content %}
+    <style type="text/css">
+        form span{
+            color:red;
+            font-size: 20px;
+        }
+        form input{
+            padding:0 0 0 10px;
+            width: 300px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgb(192 201 207);
+            outline: none;
+        }
+        .btn_submit{
+            border: 1px solid #409EFF;
+            border-radius: 10px;
+            width: 300px;
+            height: 40px;
+            margin-left: 90px;
+        }
+    input::placeholder{
+            color:rgb(192 201 207);
+            font-size: 14px;
+
+        }
+
+    </style>
+    <h1 align="center">Sign Up</h1><br/>
+    <form method="POST" action="{% url '注册' %}" align = center autocomplete="off">
+        {% csrf_token %}
+        <p style="color: red;">{{ Waring }}</p>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>*</span>&nbsp;姓名：<input name="user_name" type="text" placeholder="请输入您的真实姓名"></label><br/><br/>
+        <label>&nbsp;&nbsp;&nbsp;<span>*</span>&nbsp;手机号：<input name="user_phone" type="text" placeholder="请输入手机号码"></label><br/><br/>
+        <label><span>*</span>&nbsp;身份证号：<input name="user_id" type="text" placeholder="请输入您的身份证号码"></label><br/><br/>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>*</span>&nbsp;密码：<input name="password1" type="password" placeholder="请输入密码"></label><br/><br/>
+        <label><span>*</span>&nbsp;确认密码：<input name="password2" type="password" placeholder="请确认密码"></label><br/><br/>
+        <input type="submit" value="提交" class="btn_submit btn btn-outline-primary">
+    </form>
+
+
+{% endblock %}
