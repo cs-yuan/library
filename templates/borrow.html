@@ -2,7 +2,17 @@
 {% load static %}
 {% block content %}
 <h1 id="title">这里是借阅中心</h1>
+    <style type="text/css">
+    .nav_borrow{
+        margin: 0 auto;
+        background: red;
+        width: 1000px;
+        height: 100px;
+    }
+    </style>
+<ul class="nav_borrow" id="borrow_list">
 
+</ul>
 
 <script src="{% static 'borrow.js' %}"></script>
 {% endblock %}

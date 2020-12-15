@@ -1,7 +1,17 @@
+import datetime
+
 import pymysql
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import json
+
+class DateEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj,datetime.datetime):
+            return obj.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            return json.JSONEncoder.default(self, obj)
+
 
 def home(request):
     return render(request, 'home.html')
@@ -87,6 +97,22 @@ def ajax_person_information(request):
             cur.close()
             conn.close()
             return HttpResponse(json.dumps(dic), content_type='application/json')
+        return redirect('个人中心')
+    return redirect('个人中心')
+
+def ajax_show_borrow_list(request):
+    print("我的ajax_show_borrow_list开始运行了！！")
+    if request.method == 'POST':
+        if request.is_ajax():
+            conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
+            cur = conn.cursor()
+            sql = "select * from borrow"
+            cur.execute(sql)
+            dic = {'dic':cur.fetchall()}
+            print(dic)
+            cur.close()
+            conn.close()
+            return HttpResponse(json.dumps(dic,cls=DateEncoder), content_type='application/json')
         return redirect('个人中心')
     return redirect('个人中心')
 
