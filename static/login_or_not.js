@@ -21,14 +21,12 @@ function ajaxlogin_not() {
             data:senddata,
             type:"post",
             success:function (data) {
-                alert(data['user_name'])
-                personal.innerHTML = data['user_name'];
-                display_tag(data['status']);
+                display_tag(data.judge);
             }
         })
 }
-function display_tag(status) {
-    if(status==1){
+function display_tag(judge) {
+    if(judge==1){
          document.getElementById("left_nav").style.display="inline";
          document.getElementById("right_nav").style.display="none";
          }else {

@@ -71,4 +71,24 @@ def ajax_show_one_table(request):
         return redirect('家')
     return redirect('家')
 
+def ajax_person_information(request):
+    print("我的ajax_person_information开始运行了！！")
+    if request.method == 'POST':
+        if request.is_ajax():
+            conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
+            cur = conn.cursor()
+            sql = "select user_phone from  now_user"
+            cur.execute(sql)
+            user_phone = cur.fetchall()[0][0]
+            sql = "select * from user where user_phone = '"+user_phone+"';"
+            cur.execute(sql)
+            dic = {'dic':cur.fetchall()[0]}
+            print(dic)
+            cur.close()
+            conn.close()
+            return HttpResponse(json.dumps(dic), content_type='application/json')
+        return redirect('个人中心')
+    return redirect('个人中心')
+
+
 

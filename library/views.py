@@ -19,12 +19,12 @@ def getjudge():
     cur.execute("select status,user_phone from now_user")
     data = cur.fetchall()
     status = int(data[0][0])
-    user_phone = data[0][1]
-    cur.execute("select user_name from user where user_phone ='"+user_phone+"';")
-    user_name = cur.fetchall()[0][0]
+    # user_phone = data[0][1]
+    # cur.execute("select user_name from user where user_phone ='"+user_phone+"';")
+    # user_name = cur.fetchall()[0][0]
     cur.close()
     conn.close()
-    return {'status':status,'user_name':user_name}
+    return {'judge':status}
 
 def index(request):
     return render(request,'index.html')
