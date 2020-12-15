@@ -28,6 +28,7 @@ urlpatterns = [
     path('ajax_layout/',views.ajax_layout),
     path('home/',viewss.home,name='家'),
     path('borrow/',viewss.borrow,name='借阅'),
+    path('personal/',viewss.personal,name='个人中心'),
     path('ajax_show_data/',viewss.ajax_show_data),
     path('ajax_table_search/',viewss.ajax_table_search),
     path('ajax_show_one_table/',viewss.ajax_show_one_table),

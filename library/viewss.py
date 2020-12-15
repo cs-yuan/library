@@ -3,12 +3,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import json
 
-
 def home(request):
     return render(request, 'home.html')
 
 def borrow(request):
     return render(request,'borrow.html')
+
+def personal(request):
+    return render(request,'personal.html')
 
 def ajax_show_data(request):
     print("我的ajax_show_table开始运行了！！")
@@ -48,7 +50,6 @@ def ajax_table_search(request):
             return HttpResponse(json.dumps(dic), content_type='application/json')
         return redirect('家')
     return redirect('家')
-
 
 def ajax_show_one_table(request):
     if request.method == 'POST':

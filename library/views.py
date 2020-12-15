@@ -3,23 +3,28 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import json
 
-def setjudge(num):
-    conn = pymysql.connect(host='localhost', user='root', passwd='123', db='judge', port=3306, charset='utf8')
+def setjudge(status,user_phone):
+    conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
     cur = conn.cursor()
-    cur.execute("update user set judge='"+str(num)+"';")
+    sql = '''update now_user set status='''
+    sql +=str(status)+",user_phone='"+user_phone+"'"
+    cur.execute(sql)
     conn.commit()
     cur.close()
     conn.close()
 
 def getjudge():
-    conn = pymysql.connect(host='localhost', user='root', passwd='123', db='judge', port=3306, charset='utf8')
+    conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
     cur = conn.cursor()
-    cur.execute("select judge from user")
+    cur.execute("select status,user_phone from now_user")
     data = cur.fetchall()
-    data = int(data[0][0])
+    status = int(data[0][0])
+    user_phone = data[0][1]
+    cur.execute("select user_name from user where user_phone ='"+user_phone+"';")
+    user_name = cur.fetchall()[0][0]
     cur.close()
     conn.close()
-    return data
+    return {'status':status,'user_name':user_name}
 
 def index(request):
     return render(request,'index.html')
@@ -85,7 +90,7 @@ def login(request):
         cur.close()
         conn.close()
         if (user_name,user_password,) in datalist:
-            setjudge(1)
+            setjudge(1,user_name)
             return redirect('家')
         else:
             dic = '''
@@ -97,8 +102,9 @@ def ajax_judge(request):
     if request.method == 'POST':
         if request.is_ajax():
             json.loads(request.body.decode("utf-8"))
-            judge = getjudge()
-            dic = {'judge':judge}
+            dic = getjudge()
+            ###########################################3
+            print(dic)
         return HttpResponse(json.dumps(dic), content_type='application/json')
     return render(request,'index.html')
 
@@ -107,7 +113,7 @@ def ajax_layout(request):
         if request.is_ajax():
             print("我是ajax_layout")
             json.loads(request.body.decode("utf-8"))
-            setjudge(0)
+            setjudge(0,'')
             dic = {'judge':0}
         return HttpResponse(json.dumps(dic), content_type='application/json')
     return render(request,'index.html')
