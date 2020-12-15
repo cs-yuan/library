@@ -5,8 +5,10 @@ import json
 
 
 def home(request):
-    if request.method == 'GET':
-        return render(request, 'home.html')
+    return render(request, 'home.html')
+
+def borrow(request):
+    return render(request,'borrow.html')
 
 def ajax_show_data(request):
     print("我的ajax_show_table开始运行了！！")
@@ -36,7 +38,7 @@ def ajax_table_search(request):
             # print(str)
             conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
             cur = conn.cursor()
-            sql = "select bname from books where bname like "
+            sql = "select distinct bname from books where bname like "
             sql +="'%"+str+"%';"
             cur.execute(sql)
             dic = {'data':cur.fetchall()}
@@ -57,8 +59,8 @@ def ajax_show_one_table(request):
             # print(str)
             conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
             cur = conn.cursor()
-            sql = "select * from books where bname ="
-            sql +="'"+str+"';"
+            sql = "select distinct * from books where bname like"
+            sql +="'%"+str+"%';"
             cur.execute(sql)
             dic = {'data':cur.fetchall()}
             print(dic['data'])
@@ -67,3 +69,5 @@ def ajax_show_one_table(request):
             return HttpResponse(json.dumps(dic), content_type='application/json')
         return redirect('家')
     return redirect('家')
+
+

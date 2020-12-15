@@ -50,7 +50,6 @@
             background: rgba(255,255,255,0.4);
             width:380px;
             height:100px;
-
         }
         .divv input{
             outline: none;
@@ -88,7 +87,7 @@
     </ul>
 <div class="divv" >
 <form class="d-flex" style="margin-bottom: 0px">
-          <input autocomplete="off" onclick="remove_list();search_box.style.visibility='visible'" onkeyup="ajax_search(this.value);search_box.style.visibility='visible'" id="search_input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input autocomplete="off" onclick="remove_list();search_box.style.visibility='visible'" onkeyup="ajax_search(this.value);search_box.style.visibility='visible'" id="search_input" class="form-control me-2" type="search" placeholder="请输入书名" aria-label="Search">
           <button onclick="ajax_show_one_table(search_input.value);remove_list()" id="search_btn" class="btn btn-outline-success" type="button">Search</button>
 </form>
     <ul id="search_box">
