@@ -113,8 +113,39 @@ def ajax_show_borrow_list(request):
             cur.close()
             conn.close()
             return HttpResponse(json.dumps(dic,cls=DateEncoder), content_type='application/json')
-        return redirect('个人中心')
-    return redirect('个人中心')
+        return redirect('借阅')
+    return redirect('借阅')
 
 
+def ajax_insert_borrow(request):
+    print("我的ajax_insert_borrow开始运行了！！")
+    if request.method == 'POST':
+        if request.is_ajax():
+            indata = json.loads(request.body.decode("utf-8"))
+            book_id = indata['data']
+            conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
+            cur = conn.cursor()
+            sql = '''
+                select user_phone from now_user
+            '''
+            cur.execute(sql)
+            user_phone = cur.fetchall()[0][0]
+            date_now = datetime.datetime.now()
+            year = date_now.year
+            mon = date_now.month
+            mon+=1
+            if mon>12:
+                mon=1
+            year+=1
+            date_back = datetime.datetime(year,mon,date_now.day,date_now.hour,date_now.minute,date_now.second)
 
+            sql = "insert borrow values('"+user_phone+"','"+book_id+"','"+date_now.strftime("%Y-%m-%d %H:%M:%S") +"','"+date_back.strftime("%Y-%m-%d %H:%M:%S") +"');"
+
+            print(sql)
+            cur.execute(sql)
+            conn.commit()
+            cur.close()
+            conn.close()
+            return HttpResponse(json.dumps({}), content_type='application/json')
+        return redirect('借阅')
+    return redirect('借阅')

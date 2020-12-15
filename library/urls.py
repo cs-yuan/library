@@ -33,5 +33,6 @@ urlpatterns = [
     path('ajax_table_search/',viewss.ajax_table_search),
     path('ajax_show_one_table/',viewss.ajax_show_one_table),
     path('ajax_person_information/',viewss.ajax_person_information),
-    path('ajax_show_borrow_list/',viewss.ajax_show_borrow_list)
+    path('ajax_show_borrow_list/',viewss.ajax_show_borrow_list),
+    path('ajax_insert_borrow/',viewss.ajax_insert_borrow)
 ]

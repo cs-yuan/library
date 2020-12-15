@@ -45,7 +45,7 @@ function create_list(data){
         btn1.type = "button";
         btn1.value = "收藏";
         btn1.className = "btn_submit btn btn-outline-primary";
-/**这里没写**********************************************************/
+/**这里没写********************收藏**********************************/
         btn1.addEventListener('click',function () {
                 alert(this.value)
         });
@@ -56,9 +56,10 @@ function create_list(data){
         btn2.value = "借阅";
         btn2.className = "btn_submit btn btn-outline-primary";
         btn2.style.marginLeft = "10px";
-/**这里没写**********************************************************/
+/**这里没写********************借阅**********************************/
         btn2.addEventListener('click',function () {
-                alert(this.value)
+                data = this.parentNode.parentNode.children[0].innerText;
+                ajax_insert_borrow(data)
         });
 /**这里没写**********************************************************/
         p1.appendChild(btn2);
@@ -190,6 +191,25 @@ function ajax_show_one_table(data) {
                     indata[ii].push(book_img);
                     create_list(indata[ii])
                 }
+            }
+        })
+}
+function ajax_insert_borrow(data) {
+    var jsondata = {"data":data};
+        var senddata = JSON.stringify(jsondata);
+        $.ajaxSetup({
+            beforeSend:function (xhr,settings) {
+                if(!csrfSafeMethod(settings.type)&&!this.crossDomain){
+                    xhr.setRequestHeader("X-CSRFToken",csrftoken);
+                }
+            }
+        });
+        $.ajax({
+            url:"../ajax_insert_borrow/",
+            data:senddata,
+            type:"post",
+            success:function (data) {
+                alert("借阅成功！")
             }
         })
 }
