@@ -25,25 +25,53 @@ function ajax_show_borrow_list() {
                 // create_borrow_list(data['dic'])
                 indata = data['dic']
                 for(bi=0;bi<indata.length;bi++){
-                    create_borrow_list(bi+1,indata[bi])
+                    var myDate = new Date();
+                    mydate = myDate.toLocaleString( );        //获取日期与时间
+
+                    outtime = 0;
+                    if(mydate >indata[bi][3]){
+                        console.log(mydate+"   "+indata[bi][3]);
+                        outtime = 1
+                    }
+                    create_borrow_list(bi+1,indata[bi],outtime)
                 }
             }
         })
 }
-function create_borrow_list(num,data) {
-    console.log(data)
+function create_borrow_list(num,data,outtime) {
+    console.log(data);
 
     tr1 = document.createElement("tr");
     for(li=0;li<4;li++){
-        a1 = document.createElement("td")
-        a1.innerText = data[li]
+
+        a1 = document.createElement("td");
+        a1.innerText = data[li];
+        if(li==1){
+            tra = document.createElement("a");
+            tra.href = data[4];
+            tra.style.textDecoration = "none";
+            tra.style.color = "black";
+            tra.style.textAlign = "center";
+            tra.target = "_blank";
+            tra.appendChild(a1);
+            tr1.appendChild(tra);
+            continue;
+        }
         tr1.appendChild(a1)
+
     }
     if(num%2==0){
         tr1.className = "color1"
     }else{
         tr1.className = "color2"
     }
-    borrow_list.append(tr1)
+    if(outtime==1){
+        tr1.className = "color3";
+        aa = document.createElement("a");
+        aa.innerHTML = "&emsp;&emsp;"+data[5]+"- v - 快还书!!";
+        tr1.children[3].appendChild(aa)
+    }
+
+    borrow_list.appendChild(tr1)
 
 }

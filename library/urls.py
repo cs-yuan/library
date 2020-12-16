@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from library import views
+from library import views, viewsss
 from library import viewss
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', views.index,name='主页'),
     path('login/', views.login,name='登录'),
     path('signup/', views.signup,name='注册'),
@@ -32,7 +32,13 @@ urlpatterns = [
     path('ajax_show_data/',viewss.ajax_show_data),
     path('ajax_table_search/',viewss.ajax_table_search),
     path('ajax_show_one_table/',viewss.ajax_show_one_table),
-    path('ajax_person_information/',viewss.ajax_person_information),
+    path('ajax_person_information/',viewsss.ajax_person_information),
     path('ajax_show_borrow_list/',viewss.ajax_show_borrow_list),
-    path('ajax_insert_borrow/',viewss.ajax_insert_borrow)
+    path('ajax_show_personal_borrow_list/',viewss.ajax_show_personal_borrow_list),
+    path('ajax_insert_borrow/',viewss.ajax_insert_borrow),
+    path('ajax_insert_collection/',viewss.ajax_insert_collection),
+    path('admin/',viewsss.admin),
+    path('admin/manage/',viewsss.manage),
+    path('ajax_submit_information/',viewsss.ajax_submit_information),
+    path('ajax_show_collection_list/',viewsss.ajax_show_collection_list)
 ]

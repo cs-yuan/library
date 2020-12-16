@@ -47,7 +47,8 @@ function create_list(data){
         btn1.className = "btn_submit btn btn-outline-primary";
 /**这里没写********************收藏**********************************/
         btn1.addEventListener('click',function () {
-                alert(this.value)
+                data = this.parentNode.parentNode.children[0].innerText;
+                ajax_insert_collection(data)
         });
 /**这里没写**********************************************************/
         p1.appendChild(btn1);
@@ -210,6 +211,25 @@ function ajax_insert_borrow(data) {
             type:"post",
             success:function (data) {
                 alert("借阅成功！")
+            }
+        })
+}
+function ajax_insert_collection(data) {
+    var jsondata = {"data":data};
+        var senddata = JSON.stringify(jsondata);
+        $.ajaxSetup({
+            beforeSend:function (xhr,settings) {
+                if(!csrfSafeMethod(settings.type)&&!this.crossDomain){
+                    xhr.setRequestHeader("X-CSRFToken",csrftoken);
+                }
+            }
+        });
+        $.ajax({
+            url:"../ajax_insert_collection/",
+            data:senddata,
+            type:"post",
+            success:function (data) {
+                alert("收藏成功！")
             }
         })
 }

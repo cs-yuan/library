@@ -10,6 +10,9 @@
     <title>LMSystem</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/pricing/">
     <!-- Favicons -->
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <meta name="theme-color" content="#7952b3">
     <style type="text/css">
       .bd-placeholder-img {
@@ -28,9 +31,10 @@
           text-decoration: none;
           color: rgba(219, 103, 68, 0.68);
       }
+      header a:hover{
+          color: rgba(219, 103, 68, 0.68);
+      }
     </style>
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   </head>
   <body style="background: rgb(248 248 248)">
@@ -39,13 +43,16 @@
   <img src="{% static 'logo.png' %}" height="38px">
   <a style="font-family: 楷体;font-size: 32px" href="{% url '主页' %}" class="h5 my-0 me-md-auto fw-normal" >图书管理系统</a>
   <nav class="my-2 my-md-0 me-md-3"  id="left_nav" >
-
     <a  id="home" class="p-2 " href="{% url '家' %}">主页</a>
     <a  id="borrow" class="p-2 " href="{% url '借阅' %}">借阅记录</a>
     <a  id="personal" class="p-2 " href="{% url '个人中心' %}">个人主页</a>
     <a class="btn btn-outline-primary" href="#" onclick="logout()">退出登录</a>
   </nav>
-  <a class="btn btn-outline-primary" href="{% url '登录' %}" id="right_nav">Login</a>
+    <div id="right_nav">
+        <a style="margin:0 10px" class="btn btn-outline-primary" href="admin/" >后台管理</a>
+  <a class="btn btn-outline-primary" href="{% url '登录' %}" >Login</a>
+    </div>
+
 </header>
 {% block head %}
 {% endblock %}
@@ -65,4 +72,5 @@
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 </script>
 <script src="{% static 'login_or_not.js' %}"></script>
-</body></html>
+</body>
+</html>

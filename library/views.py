@@ -2,7 +2,6 @@ import pymysql
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import json
-
 def setjudge(status,user_phone):
     conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
     cur = conn.cursor()
@@ -12,7 +11,6 @@ def setjudge(status,user_phone):
     conn.commit()
     cur.close()
     conn.close()
-
 def getjudge():
     conn = pymysql.connect(host='localhost', user='root', passwd='123', db='library', port=3306, charset='utf8')
     cur = conn.cursor()
@@ -25,12 +23,8 @@ def getjudge():
     cur.close()
     conn.close()
     return {'judge':status}
-
 def index(request):
     return render(request,'index.html')
-
-
-
 def signup(request):
     if request.method=='GET':
         return render(request, 'signup.html')
@@ -38,7 +32,11 @@ def signup(request):
         object = request.POST
         user_name = object.get('user_name')
         user_phone = object.get('user_phone')
+        if len(user_phone)!=11:
+            return render(request, 'signup.html', {'Waring': '请输入正确的手机号！！'})
         user_id = object.get('user_id')
+        if len(user_id)!=18:
+            return render(request, 'signup.html', {'Waring': '请输入正确的身份证号！！'})
         user_password1 = object.get('password1')
         user_password2 = object.get('password2')
         arr = [user_name,user_phone,user_id,user_password1,user_password2]
@@ -72,8 +70,6 @@ def signup(request):
                 cur.close()
                 conn.close()
                 return redirect('登录')
-
-
 def login(request):
     if request.method =='GET':
         return render(request,'login.html')
@@ -97,7 +93,6 @@ def login(request):
                 账号或密码错误
             '''
             return render(request,'login.html',{'dic':dic})
-
 def ajax_judge(request):
     if request.method == 'POST':
         if request.is_ajax():
@@ -107,7 +102,6 @@ def ajax_judge(request):
             print(dic)
         return HttpResponse(json.dumps(dic), content_type='application/json')
     return render(request,'index.html')
-
 def ajax_layout(request):
     if request.method == 'POST':
         if request.is_ajax():

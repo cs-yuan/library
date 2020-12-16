@@ -1,7 +1,6 @@
 {% extends 'theme.html' %}
 {% load static %}
 {% block content %}
-<h1 id="title">这里是借阅中心</h1>
     <style type="text/css">
     .nav_borrow{
         margin: 0 auto;
@@ -16,10 +15,13 @@
         font-size: 20px;
     }
     .nav_borrow tr td{
-        align:center
+        text-align:center
+    }
+    .nav_borrow tr a td{
+        text-align: center;
     }
     .nav_borrow tr:hover{
-        background: #a2a2a2;
+        background: rgb(185, 185, 185);
     }
     .color1{
         background: rgb(255, 255, 221);
@@ -27,10 +29,13 @@
     .color2{
         background: rgba(255, 86, 0, 0.15);
     }
+    .color3{
+        background: rgb(255, 90, 41);
+    }
 
     </style>
 <table class="nav_borrow" id="borrow_list">
-<tr style="font-weight: bolder;">
+<tr style="font-weight: bolder;background: rgb(185, 185, 185)">
     <td>用户名</td>
     <td>图书编号</td>
     <td>借出日期</td>

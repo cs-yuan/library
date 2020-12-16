@@ -24,14 +24,13 @@
     input::placeholder{
             color:rgb(192 201 207);
             font-size: 14px;
-
         }
 
     </style>
-    <h1 align="center">Sign Up</h1><br/>
-    <form method="POST" action="{% url '注册' %}" align = center autocomplete="off">
+    <h1 align="center">Sign Up</h1>
+    <form style="margin-left: -30px" method="POST" action="{% url '注册' %}" align = center autocomplete="off">
         {% csrf_token %}
-        <p style="color: red;">{{ Waring }}</p>
+        <a style="color: red;margin-left: 30px">{{ Waring }}</a><br/>
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>*</span>&nbsp;姓名：<input name="user_name" type="text" placeholder="请输入您的真实姓名"></label><br/><br/>
         <label>&nbsp;&nbsp;&nbsp;<span>*</span>&nbsp;手机号：<input name="user_phone" type="text" placeholder="请输入手机号码"></label><br/><br/>
         <label><span>*</span>&nbsp;身份证号：<input name="user_id" type="text" placeholder="请输入您的身份证号码"></label><br/><br/>
