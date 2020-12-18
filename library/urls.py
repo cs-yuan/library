@@ -37,7 +37,7 @@ urlpatterns = [
     path('ajax_show_personal_borrow_list/',viewss.ajax_show_personal_borrow_list),
     path('ajax_insert_borrow/',viewss.ajax_insert_borrow),
     path('ajax_insert_collection/',viewss.ajax_insert_collection),
-    path('admin/',viewsss.admin),
+    path('admin/',viewsss.admin,name='管理员'),
     path('admin/manage/',viewsss.manage),
     path('ajax_submit_information/',viewsss.ajax_submit_information),
     path('ajax_show_collection_list/',viewsss.ajax_show_collection_list)

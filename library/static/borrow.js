@@ -26,10 +26,36 @@ function ajax_show_borrow_list() {
                 indata = data['dic']
                 for(bi=0;bi<indata.length;bi++){
                     var myDate = new Date();
-                    mydate = myDate.toLocaleString( );        //获取日期与时间
-
+                    var myDate = new Date();
+                mydate = ""
+                mydate+=myDate.getFullYear().toString()+"-";
+                x = (myDate.getMonth()+1).toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+"-";
+                x = myDate.getDate().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+" ";
+                x = myDate.getHours().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+":";
+                x = myDate.getMinutes().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+":";
+                x = myDate.getSeconds().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x;
                     outtime = 0;
-                    if(mydate >indata[bi][3]){
+                    if(mydate >=indata[bi][3]){
                         console.log(mydate+"   "+indata[bi][3]);
                         outtime = 1
                     }

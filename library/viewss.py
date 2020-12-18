@@ -119,13 +119,13 @@ def ajax_insert_borrow(request):
             cur.execute(sql)
             user_phone = cur.fetchall()[0][0]
             date_now = datetime.datetime.now()
-            year = date_now.year
-            mon = date_now.month
-            mon += 1
-            if mon > 12:
-                mon = 1
-            year += 1
-            date_back = datetime.datetime(year,mon,date_now.day,date_now.hour,date_now.minute,date_now.second)
+            hou = date_now.hour
+            minut = date_now.minute
+            minut += 3
+            if minut > 59:
+                minut = minut%60
+                hou += 1
+            date_back = datetime.datetime(date_now.year,date_now.month,date_now.day,hou,minut,date_now.second)
 
             sql = "insert borrow values('"+user_phone+"','"+book_id+"','"+date_now.strftime("%Y-%m-%d %H:%M:%S") +"','"+date_back.strftime("%Y-%m-%d %H:%M:%S") +"');"
 

@@ -169,10 +169,39 @@ function ajax_show_personal_borrow_list(type) {
                 indata = data['dic'];//bid borrow_date back_date bhref
                  // console.log(indata)
                 var myDate = new Date();
-                    mydate = myDate.toLocaleString( );
+                mydate = ""
+                mydate+=myDate.getFullYear().toString()+"-";
+                x = (myDate.getMonth()+1).toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+"-";
+                x = myDate.getDate().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+" ";
+                x = myDate.getHours().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+":";
+                x = myDate.getMinutes().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x+":";
+                x = myDate.getSeconds().toString();
+                if (x.length==1){
+                    x = "0"+x;
+                }
+                mydate+=x;
+                console.log(mydate)
+
                 if(type==0){
                     for(iii=0;iii<indata.length;iii++){
-                     console.log(indata[iii]);
+                        judgee = indata[iii][2]>mydate?"1":"0";
+                     console.log(indata[iii][2]+" "+mydate+" "+judgee);
                     create_person_borrow(indata[iii],iii%2)
                     }
                 }else if(type ==1){
@@ -183,7 +212,6 @@ function ajax_show_personal_borrow_list(type) {
                     }
                 }else if(type ==2){
                     for(iii=0;iii<indata.length;iii++){
-                     console.log(indata[iii]);
                      if(indata[iii][2]>mydate)
                         create_person_borrow(indata[iii],iii%2)
                     }
