@@ -63,7 +63,7 @@ def signup(request):
                                        charset='utf8')
                 cur = conn.cursor()
                 sql = '''insert user values('''
-                sql += "'"+user_phone+"','"+user_name+"','"+user_id+"','"+user_password1+"')"
+                sql += "'"+user_phone+"','"+user_name+"','"+user_id+"','"+user_password1+"','')"
                 print(sql)
                 cur.execute(sql)
                 conn.commit()
