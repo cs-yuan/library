@@ -10,7 +10,7 @@ function remove_list() {
                 var childs = el.childNodes;
                 for(var i = childs .length - 1; i >= 0; i--) {
                   el.removeChild(childs[i]);
-                }
+    }
 }
 function create_list(data){
         div1 = document.createElement("div");

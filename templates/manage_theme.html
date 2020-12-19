@@ -1,0 +1,60 @@
+{% csrf_token %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>图书管理系统后台管理模板</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"/>
+</head>
+<body>
+<script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript">
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+</script>
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="{% url '后台管理首页' %}">首页</a></li>
+                <li><a href="{% url '主页' %}" >网站首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="{% url '主页' %}">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                <li>
+                    <a><i class="icon-font">&#xe003;</i>常用操作</a>
+                    <ul class="sub-menu">
+                        <li><a href="{% url '后台用户管理' %}"><i class="icon-font">&#xe008;</i>账号管理</a></li>
+                        <li><a href="{% url '后台收藏管理' %}"><i class="icon-font">&#xe005;</i>收藏管理</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+<script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript">
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+</script>
+    <div class="main-wrap">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'manage_theme.html' %}
+{% load static %}
+{% block content %}
+    <div class="result-wrap">
+        <div class="result-content">
+            <table id="collection_list" class="result-tab" width="100%" style="margin-top: 36px">
+                <tr>
+                    <th>手机号</th>
+                    <th>图书编号</th>
+                    <th>操作</th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <script  src="{% static 'admin_show_user_and_collection.js' %}"></script>
+    <script>
+            ajax_show_list_collection()
+    </script>
+{% endblock %}

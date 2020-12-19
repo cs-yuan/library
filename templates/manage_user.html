@@ -1,0 +1,22 @@
+{% extends 'manage_theme.html' %}
+{% load static %}
+{% block content %}
+                <div class="result-content">
+                    <table  class="result-tab" width="100%" style="margin-top: 36px">
+                        <tbody id="user_list">
+                        <tr>
+                            <th>手机号</th>
+                            <th>姓名</th>
+                            <th>身份证号码</th>
+                            <th>密码</th>
+                            <th>邮箱</th>
+                            <th>操作</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+    <script  src="{% static 'admin_show_user_and_collection.js' %}"></script>
+    <script>
+            ajax_show_list_user()
+    </script>
+{% endblock %}

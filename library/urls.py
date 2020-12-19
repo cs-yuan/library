@@ -38,7 +38,14 @@ urlpatterns = [
     path('ajax_insert_borrow/',viewss.ajax_insert_borrow),
     path('ajax_insert_collection/',viewss.ajax_insert_collection),
     path('admin/',viewsss.admin,name='管理员'),
+    path('admin/index/',viewsss.admin_index,name='后台管理首页'),
+    path('admin/user/',viewsss.admin_user,name='后台用户管理'),
+    path('admin/collection/',viewsss.admin_collection,name='后台收藏管理'),
     path('admin/manage/',viewsss.manage),
     path('ajax_submit_information/',viewsss.ajax_submit_information),
-    path('ajax_show_collection_list/',viewsss.ajax_show_collection_list)
+    path('ajax_show_collection_list/',viewsss.ajax_show_collection_list),
+    path('admin/ajax_show_list_user/',viewsss.ajax_show_list_user),
+    path('admin/ajax_show_list_collection/',viewsss.ajax_show_list_collection),
+    path('admin/ajax_delete_list_user/',viewsss.ajax_delete_list_user),
+    path('admin/ajax_delete_list_collection/',viewsss.ajax_delete_list_collection),
 ]

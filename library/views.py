@@ -75,7 +75,7 @@ def login(request):
         return render(request,'login.html')
     else:
         object = request.POST
-        if object.get('register')=='1':
+        if object.get('register') == '1':
             return redirect('注册')
         user_name = object.get('user_name')
         user_password = object.get('user_password')
